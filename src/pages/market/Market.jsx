@@ -4,7 +4,7 @@ import List from "../../components/list/List";
 
 const Market = () => {
   return (
-    <div className="min-h-fit pb-3 bg-background m-2 rounded-tl-xl rounded-tr-xl w-[98%] mx-auto">
+    <div className=" pb-3">
       <Navbar />
       <List />
     </div>

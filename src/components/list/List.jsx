@@ -14,8 +14,13 @@ const List = () => {
       )
       .then(
         (res) => {
-          console.log(res.data);
-          setData(res.data);
+          // console.log(res.data);
+          setData(
+            res.data.sort(function (a, b) {
+              return b.market_cap - a.market_cap;
+            })
+            // .slice(0, 10)
+          );
           setLoading(true);
         },
         (error) => {
@@ -25,7 +30,7 @@ const List = () => {
   }, []);
 
   return loading ? (
-    <div className=" flex flex-col  mt-20 ml-[120px] ">
+    <div className=" flex flex-col   mx-auto px-8 pt-6">
       <span className="py-2  h-auto">
         <h1 className="text-darkBlue font-medium  text-[24px]">Crypto</h1>
         <h1 className="text-darkBlue  font-light text-[13px]  mt-2 ">
@@ -40,26 +45,40 @@ const List = () => {
         {/* <hr className="bg-white  mt-4 w-[90%] " /> */}
       </span>
       <div className="flex flex-col items-stretch justify-center ">
-        {/* <div className="grid grid-cols-[200px,100px,100px,100px,100px] p-2 text-white text-left mb-2 border-b-overlay border-b">
-          <h1 className="font-light pl-2 text-left">Name</h1>
-          <h1 className="font-light text-left">Symbol</h1>
-          <h1 className="font-light">Price</h1>
-          <h1 className="font-light">Today </h1>
-          <h1 className="font-light">Market Cap </h1>
-        </div> */}
+        {/* <div className="flex flex-row ">
+          <div className="w-1/4 text-left px-4">{/* <span></span> 
+          </div>
 
-        {data.map((coin) => {
+          <div className="w-1/4 text-left px-4">
+            <h2 className="  text-left text-darkBlue">Name </h2>
+          </div>
+          <div className="w-1/4 text-left px-4">
+            <h2 className="  text-left text-darkBlue">Symbol </h2>
+          </div>
+          <div className="w-1/4 text-left px-4">
+            <h2 className="  text-left text-darkBlue">Price </h2>
+          </div>
+          <div className="w-1/4 text-left px-4">
+            <h2 className="  text-left text-darkBlue">Today </h2>
+          </div>
+          <div className="w-1/4 text-left px-4">
+            <h2 className="  text-left text-darkBlue">Market Cap </h2>
+          </div>
+        </div> */}
+        {/* {data.map((coin) => {
           return (
             <Coin
               key={coin.id}
               name={coin.name}
+              image={coin.image}
               id={coin.symbol}
               price={coin.current_price}
               change={coin.market_cap_change_percentage_24h}
               cap={coin.market_cap}
             />
           );
-        })}
+        })} */}
+        <Coin data={data} />
       </div>
     </div>
   ) : (
